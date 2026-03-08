@@ -2,51 +2,36 @@ import React, { useEffect, useState } from "react";
 
 function SongList({ onSelect }) {
     const [songs, setSongs] = useState([]);
-    const [active, setActive] = useState(null);
-
     useEffect(() => {
-        fetch("http://localhost:2855/api/music")
-            .then((res) => res.json())
-            .then((data) => setSongs(data))
-            .catch((err) => console.error(err));
-
+        fetch(process.env.PUBLIC_URL + "/data/songs.json")
+            .then(res => res.json())
+            .then(data => setSongs(data))
+            .catch(err => console.error(err));
     }, []);
 
     return ( <
-        div style = {
-            {
-                width: "250px",
-                backgroundColor: "#000",
-                padding: "20px",
-                height: "100vh",
-                overflowY: "auto",
-            }
-        } > {
+        div >
+        <
+        h2 > Songs < /h2>
+
+        {
             songs.map((song) => ( <
                 div key = { song.id }
                 onClick = {
                     () => {
-                        setActive(song.id);
+                        console.log("Clicked:", song);
                         onSelect(song);
                     }
                 }
                 style = {
-                    {
-                        padding: "12px",
-                        marginBottom: "10px",
-                        borderRadius: "8px",
-                        cursor: "pointer",
-                        backgroundColor: active === song.id ? "#ff4da6" : "#111",
-                        color: active === song.id ? "#000" : "#ff4da6",
-                        fontWeight: "bold",
-                        transition: "0.3s",
-                    }
-                } > { song.songtitle } <
+                    { cursor: "pointer", padding: "10px", color: "white" }
+                } > { song.songtitle } - { song.artist } <
                 /div>
             ))
         } <
         /div>
     );
+
 }
 
 export default SongList;

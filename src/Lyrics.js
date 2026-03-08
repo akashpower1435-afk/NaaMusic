@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 function Lyrics({ song }) {
 
@@ -6,15 +6,15 @@ function Lyrics({ song }) {
     const lyricsRefs = useRef([]);
     const [currentTime, setCurrentTime] = useState(0);
 
-    // Reset time when song changes
+    // Reset when song changes
     useEffect(() => {
         if (audioRef.current) {
             audioRef.current.currentTime = 0;
         }
         setCurrentTime(0);
-    }, [song && song.id]);
+    }, [song]);
 
-    // Parser
+    // Parse timestamp lyrics
     const parseLyrics = (lyrics) => {
         if (!lyrics) return [];
 
@@ -34,9 +34,8 @@ function Lyrics({ song }) {
             })
             .filter(Boolean);
     };
-
-    const originalParsed = parseLyrics(song && song.originalLyrics ? song.originalLyrics : "");
-    const translatedParsed = parseLyrics(song && song.translatedLyrics ? song.translatedLyrics : "");
+    const originalParsed = parseLyrics(song ? song.originalLyrics : "");
+    const translatedParsed = parseLyrics(song ? song.translatedLyrics : "");
 
     const mergedLyrics = originalParsed.map((line, index) => ({
         time: line.time,
@@ -46,7 +45,25 @@ function Lyrics({ song }) {
     }));
 
 
-    // 🔥 Auto scroll effect
+    // Track audio time
+    useEffect(() => {
+        const audio = audioRef.current;
+
+        const update = () => {
+            setCurrentTime(audio.currentTime);
+        };
+
+        if (audio) {
+            audio.addEventListener("timeupdate", update);
+        }
+
+        return () => {
+            if (audio) audio.removeEventListener("timeupdate", update);
+        };
+    }, []);
+
+
+    // Auto-scroll active lyric
     useEffect(() => {
 
         mergedLyrics.forEach((line, index) => {
@@ -74,29 +91,26 @@ function Lyrics({ song }) {
     }, [currentTime, mergedLyrics]);
 
 
-    // 🔥 Now returns AFTER hooks
-    if (!song) return null;
-    if (!song.originalLyrics) return <div > No lyrics available < /div>;
+    if (!song) return <div > Select a song🎧 < /div>;
 
     return ( <
         div >
 
         <
         audio ref = { audioRef }
-        src = { `http://localhost:2855${song.audiourl}` }
-        controls autoPlay onTimeUpdate = {
-            () =>
-            setCurrentTime(audioRef.current.currentTime)
+        controls autoPlay src = { process.env.PUBLIC_URL + song.audiourl }
+        style = {
+            { marginTop: "20px" }
         }
         />
 
         <
         div style = {
             {
-                height: "400px",
+                height: "450px",
                 overflowY: "auto",
                 textAlign: "center",
-                marginTop: "20px"
+                marginTop: "30px"
             }
         } >
 
@@ -118,27 +132,28 @@ function Lyrics({ song }) {
                         (el) => (lyricsRefs.current[index] = el)
                     }
                     style = {
-                        { marginBottom: "18px" }
+                        { marginBottom: "20px" }
                     } >
 
-                    <
+                    { /* Original lyric */ } <
                     div style = {
                         {
                             color: isActive ? "#ff4da6" : "#555",
                             fontSize: isActive ? "28px" : "20px",
                             fontWeight: isActive ? "bold" : "normal",
-                            transition: "0.3s",
+                            textShadow: isActive ? "0px 0px 10px #ff4da6" : "none",
+                            transition: "all 0.3s ease"
                         }
                     } > { line.original } <
                     /div>
 
-                    {
+                    { /* Translated lyric */ } {
                         line.translated && ( <
                             div style = {
                                 {
                                     color: isActive ? "#ff99cc" : "#999",
                                     fontSize: "18px",
-                                    marginTop: "4px",
+                                    marginTop: "5px"
                                 }
                             } > { line.translated } <
                             /div>
@@ -149,7 +164,9 @@ function Lyrics({ song }) {
                     /div>
                 );
             })
-        } <
+        }
+
+        <
         /div>
 
         <

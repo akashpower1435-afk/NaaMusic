@@ -1,5 +1,6 @@
 [{
         "id": 1,
+        "language": "hindi",
         "artist": "Anuv Jain",
         "songtitle": "Arz Kiya Hai",
         "audiourl": "/songs/Arz_Kiya_Hai.mp3",
@@ -13,6 +14,7 @@
 
     {
         "id": 2,
+         "language": "tamil",
         "artist": "Sidhhu Kumar",
         "songtitle": "Urugi Urugi",
 
@@ -21,5 +23,15 @@
         "originalLyrics": "[00:18] Urugi urugi ponadhadi En ullam yaan neeye\n[00:27] Kurugi kurugi ponadhadi En ennnam yaan neeye\n[00:36] Nee indri moodumae En vaanam\n[00:45] Neethaane kaadhalae Ennaalum\n[00:53] Urugi urugi ponadhadi En ullam yaan neeye\n[01:02] Kurugi kurugi ponadhadi En ennnam yaan neeye\n[01:15] BGM\n[01:49] Yaazho mooralo\n[01:58] Thaeno pesum neramo\n[02:08] Paalo...\n[02:12] Paadhamoo..\n[02:16] Aadai kaalin nigalo\n[02:24] Karaigalin Karaiyum vennurai kadhaithidum mozhigalaai\n[02:33] Vizhigalin valaivil vaanavil nirangalae kaathala\n[02:42] Nee indri moodumae En vaanam\n[02:51] Neethane En Kaadhale\n[02:55] Ennalum\n[03:00] Urugi urugi ponadhadi En ullam yaan neeye\n[03:09] Kurugi kurugi ponadhadi En ennnam yaan neeye\n[03:18] Urugi urugi ponadhadi En ullam yaan neeye\n[03:26] Kurugi kurugi ponadhadi En ennnam yaan neeye",
 
         "translatedLyrics": "[00:18] I kept melting away… my heart has become you\n[00:27] I kept shrinking within… my thoughts have become you\n[00:36] Without you, my sky would close and darken\n[00:45] You are my love… forever\n[00:53] I kept melting away… my heart has become you\n[01:02] I kept shrinking within… my thoughts have become you\n[01:15] BGM\n[01:49] Is it the sound of a harp?\n[01:58] Or is it a moment where honey speaks?\n[02:08] Is it like sweet milk…\n[02:12] Or your gentle footsteps…\n[02:16] Or the soft sound of your anklet as you walk?\n[02:24] Like the melting white foam of the shore telling stories in words\n[02:33] In the curve of your eyes, love shines in rainbow colors\n[02:42] Without you, my sky would close\n[02:51] You are my love\n[02:55] Forever\n[03:00] I kept melting away… my heart has become you\n[03:09] I kept shrinking within… my thoughts have become you\n[03:18] I kept melting away… my heart has become you\n[03:26] I kept shrinking within… my thoughts have become you"
-    }
+    },
+
+
+    {
+        "id": 4,
+         "language": "english",
+  "songtitle": "Perfect",
+  "artist": "Ed Sheeran",
+  "audiourl": "/songs/perfect.mp3",
+  "originalLyrics": "[00:02] I found a love for me\n[00:10] Oh, darling, just dive right in and follow my lead\n[00:17] Well, I found a girl, beautiful and sweet\n[00:25] Oh, I never knew you were the someone waitin' for me\n[00:32] 'Cause we were just kids when we fell in love\n[00:36] not knowin' what it was\n[00:40] I will not give you up this time\n[00:48] Oh, darling, just kiss me slow\n[00:51] your heart is all I own\n[00:56] And in your eyes, you're holding mine\n[01:02] Baby, I'm dancin' in the dark with you between my arms\n[01:13] Barefoot on the grass while listenin' to our favourite song\n[01:20] When you said you looked a mess\n[01:24] I whispered underneath my breath\n[01:28] But you heard it, Darling, you look perfect tonight\n[01:40] Well, I found a woman, stronger than anyone I know\n[01:48] She shares my dreams, I hope that someday, I'll share her home\n[01:55] I found a love to carry more than just my secrets\n[02:04] To carry love, to carry children of our own\n[02:10] We are still kids, but we're so in love, fightin' against all odds\n[02:19] I know we'll be alright this time\n[02:26] Darling, just hold my hand, be my girl, I'll be your man\n[02:34] I see my future in your eyes\n[02:40] Oh, baby, I'm dancin' in the dark\n[02:47] with you between my arms\n[02:52] Barefoot on the grass while listenin' to our favourite song\n[02:59] When I saw you in that dress, lookin' so beautiful\n[03:05] I don't deserve this, darling, you look perfect tonight\n[03:13] Love\n[03:24] Mm, oh\n[03:26] Baby, I'm dancin' in the dark\n[03:33] with you between my arms\n[03:37] Barefoot on the grass\n[03:41] while listenin' to our favourite song\n[03:44] I have faith in what I see\n[03:48] now I know I have met, An angel in person\n[03:55] and she looks perfect\n[03:58] Though I don't deserve this\n[04:02] you look perfect tonight"
+}
 ]

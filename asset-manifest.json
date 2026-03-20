@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/NaaMusic/static/css/main.1a6dfb88.css",
-    "main.js": "/NaaMusic/static/js/main.31f9419e.js",
+    "main.css": "/NaaMusic/static/css/main.e618e20d.css",
+    "main.js": "/NaaMusic/static/js/main.a13346ae.js",
     "static/js/453.8953fb1a.chunk.js": "/NaaMusic/static/js/453.8953fb1a.chunk.js",
     "index.html": "/NaaMusic/index.html",
-    "main.1a6dfb88.css.map": "/NaaMusic/static/css/main.1a6dfb88.css.map",
-    "main.31f9419e.js.map": "/NaaMusic/static/js/main.31f9419e.js.map",
+    "main.e618e20d.css.map": "/NaaMusic/static/css/main.e618e20d.css.map",
+    "main.a13346ae.js.map": "/NaaMusic/static/js/main.a13346ae.js.map",
     "453.8953fb1a.chunk.js.map": "/NaaMusic/static/js/453.8953fb1a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1a6dfb88.css",
-    "static/js/main.31f9419e.js"
+    "static/css/main.e618e20d.css",
+    "static/js/main.a13346ae.js"
   ]
 }

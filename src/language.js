@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Languages.css";
 
 function Languages() {
   const navigate = useNavigate();
+  const [selected, setSelected] = useState(null); // 🔥 NEW
 
   const languages = [
     {
@@ -34,13 +35,11 @@ function Languages() {
   ];
 
   return (
-    <div
-      className="language-page"
-      style={{
-        backgroundImage:
-          "url(https://i.pinimg.com/1200x/e0/ed/33/e0ed332ceb372c8d482b7f7244091a17.jpg)",
-      }}
-    >
+    <div className="language-page">
+
+      <div className="bg-image"></div>
+      <div className="overlay"></div>
+
       <h1 className="title">Select Language 🎧</h1>
 
       <div className="language-container">
@@ -48,7 +47,7 @@ function Languages() {
           <div
             key={lang.name}
             className={`language-card ${lang.position}`}
-            onClick={() => navigate(`/songs/${lang.name}`)}
+            onClick={() => setSelected(lang)}  // 🔥 CHANGED
           >
             <div className="card-inner">
               <img src={lang.img} alt={lang.name} />
@@ -57,6 +56,37 @@ function Languages() {
           </div>
         ))}
       </div>
+
+      {/* 🔥 POPUP */}
+      {selected && (
+        <div className="popup-overlay" onClick={() => setSelected(null)}>
+          <div
+            className="popup-card"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img src={selected.img} alt={selected.name} />
+
+            <h2>{selected.name}</h2>
+
+            <div className="popup-buttons">
+              <button
+                className="play-btn"
+                onClick={() => navigate(`/songs/${selected.name}`)}
+              >
+                ▶ Play
+              </button>
+
+              <button
+                className="close-btn"
+                onClick={() => setSelected(null)}
+              >
+                ✖ Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

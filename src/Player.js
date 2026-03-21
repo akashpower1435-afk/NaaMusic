@@ -1,36 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SongList from "./SongList";
+import Player from "./Player"; // Assuming this is your basic controls component
 import Lyrics from "./Lyrics";
-import Player from "./Player";
 
 function PlayerPage() {
   const [selectedSong, setSelectedSong] = useState(null);
 
+  useEffect(() => {
+    document.body.style.margin = "0";
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+      document.documentElement.style.overflow = "auto";
+    };
+  }, []);
+
   return (
     <div style={styles.container}>
-      
-      {/* LEFT SIDE - SONG LIST */}
+      <div style={styles.overlay}></div>
+
       <div style={styles.sidebar}>
-        <h2 style={styles.sidebarTitle}>Songs 🎵</h2>
         <SongList onSelect={setSelectedSong} />
       </div>
 
-      {/* RIGHT SIDE - PLAYER */}
       <div style={styles.main}>
         {selectedSong ? (
-          <>
-            <h1 style={styles.songTitle}>
-              {selectedSong.songtitle}
-            </h1>
+          <div style={styles.contentWrapper}>
+            <div style={styles.top}>
+              <img src={process.env.PUBLIC_URL + selectedSong.image} alt="" style={styles.cover} />
+              <h2 style={{margin: '10px 0'}}>{selectedSong.songtitle}</h2>
+              <p style={{color: '#aaa'}}>{selectedSong.artist}</p>
+            </div>
 
-            <Player song={selectedSong} />
-
-            <Lyrics song={selectedSong} />
-          </>
+            <div style={styles.lyricsContainer}>
+              <Lyrics song={selectedSong} />
+            </div>
+          </div>
         ) : (
-          <p style={styles.placeholder}>
-            Select a song 🎧
-          </p>
+          <div style={styles.placeholder}>Select a song from the list 🎧</div>
         )}
       </div>
     </div>
@@ -38,65 +46,25 @@ function PlayerPage() {
 }
 
 const styles = {
-  /* MAIN BACKGROUND */
-  container: {
-    display: "flex",
-    height: "100vh",
-    backgroundColor: "#0a0a1a",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    color: "white",
-    fontFamily: "Poppins, sans-serif"
-  },
-
-  /* SIDEBAR */
-  sidebar: {
-    width: "25%",
-    padding: "20px",
-    borderRight: "1px solid rgba(0,150,255,0.2)",
-    backdropFilter: "blur(10px)",
-    background: "rgba(255,255,255,0.03)"
-  },
-
-  sidebarTitle: {
-    color: "#7dd3fc",
-    marginBottom: "20px",
-    textShadow: `
-      0 0 5px #00bfff,
-      0 0 10px #00bfff,
-      0 0 20px #007bff
-    `
-  },
-
-  /* MAIN CONTENT */
+  // ... other styles stay the same
   main: {
     width: "75%",
-    padding: "40px",
-    textAlign: "center"
+    display: "flex",
+    flexDirection: "column",
+    overflow: "hidden",
+    zIndex: 1,
+    background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.8))", // Fade background
   },
-
-  /* SONG TITLE (BLUE GLOW 🔥) */
-  songTitle: {
-    fontSize: "36px",
-    marginBottom: "20px",
-    color: "#7dd3fc",
-    letterSpacing: "1px",
-
-    textShadow: `
-      0 0 5px #00bfff,
-      0 0 10px #00bfff,
-      0 0 20px #007bff,
-      0 0 40px #007bff
-    `
+  lyricsContainer: {
+    flex: 1,
+    overflow: "hidden", // Disable manual scroll to keep it synced
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
-
-  /* EMPTY STATE */
-  placeholder: {
-    marginTop: "200px",
-    fontSize: "22px",
-    color: "#aaa",
-    textShadow: "0 0 10px rgba(0,150,255,0.3)"
-  }
 };
 
 export default PlayerPage;
+// ... imports stay the same
+
+// Use the updated Lyrics component inside this page
